@@ -5,36 +5,33 @@ import Page from './page.js';
  * sub page containing specific selectors and methods for a specific page
  */
 class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
-    get inputUsername () {
-        return $('#username');
+    get usernameEle () {
+        return $("#login-username");
     }
 
-    get inputPassword () {
-        return $('#password');
+    get passwordEle () {
+        return $("login-password");
     }
 
-    get btnSubmit () {
-        return $('button[type="submit"]');
+    get loginBtn () {
+        return $("button[type='submit']");
     }
-
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
+    get signUpBtn() {
+        return $("button[type='button']");
     }
+    
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
+    // methods 
     open () {
         return super.open('login');
+    }
+    async loginFn(username, password) {
+        await this.sendValue(this.usernameEle, username)
+        await this.sendValue(this.passwordEle, password)
+        await this.click(this.loginBtn)
+    }
+    async clickSignupBtn() {
+        await this.click(this.signUpBtn)
     }
 }
 
