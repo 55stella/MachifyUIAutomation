@@ -18,4 +18,7 @@ export default class Page {
     async sendValue(webElement, value) {
         await webElement.setValue(value)
     }
+    async doubleClick(webElement) {
+        await webElement.doubleClick()
+    }
 }
