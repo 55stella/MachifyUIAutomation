@@ -34,7 +34,7 @@ jobs:
 
       # Step 5: Run frontend tests (using your test script)
       - name: Run frontend tests
-        run: npx wdio
+        run: npm run wdio
 
       # Step 6: Generate Allure report (optional if using)
       - name: Generate Allure report
