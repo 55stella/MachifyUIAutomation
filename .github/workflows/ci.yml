@@ -1,0 +1,49 @@
+name: Frontend Tests CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Install Allure Command Line globally
+      - name: Install Allure Command Line
+        run: |
+          npm install -g allure-commandline --save-dev
+
+      # Step 5: Run frontend tests (using your test script)
+      - name: Run frontend tests
+        run: npm run test:frontend
+
+      # Step 6: Generate Allure report (optional if using)
+      - name: Generate Allure report
+        run: |
+          allure generate --clean allure-results && allure open
+
+      # Step 7: Upload Allure report as artifact
+      - name: Upload Allure report as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-report
+          path: allure-results

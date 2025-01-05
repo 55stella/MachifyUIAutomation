@@ -1,7 +1,10 @@
 import path from "path";
+import dotenv from "dotenv";
+dotenv.config();
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const run_local = process.env.run_local==='true';
 export const config = {
   //
   // ====================
@@ -57,10 +60,9 @@ export const config = {
       // capabilities for local Appium web tests on an Android Emulator
       platformName: "Android",
       browserName: "Chrome",
-      "appium:deviceName": "Infinix HOT 8",
-      "appium:platformVersion": "9",
-      "appium:automationName": "UiAutomator2",
-      // chromedriverExecutable: "test/specs/Resources/chrome-mac-arm64",
+      "appium:deviceName": `${run_local? "Infinix HOT 8":""},`,
+      "appium:platformVersion": `${run_local? "9":""}`,
+      "appium:automationName": `${run_local?"UiAutomator2": ""}`,
       "appium:chromedriverExecutable": path.join(
         __dirname,
         "test/specs/Resources/chromedriver"
@@ -125,6 +127,10 @@ export const config = {
   // before running any tests.
   framework: "mocha",
 
+  // other configurations...
+
+  // other configurations...
+
   //
   // The number of times to retry the entire specfile when it fails as a whole
   // specFileRetries: 1,
@@ -138,8 +144,16 @@ export const config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
-
+  
+  reporters: [
+    "spec",
+    [
+      "allure",
+      {
+        outputDir: "allure-results",
+      },
+    ],
+  ],
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {

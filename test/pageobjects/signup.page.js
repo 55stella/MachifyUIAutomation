@@ -1,4 +1,5 @@
 import Page from "./page.js";
+import { $ } from '@wdio/globals'
 export default new class SignUpPage extends Page{
 
     get name() {
