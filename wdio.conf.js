@@ -4,7 +4,7 @@ dotenv.config();
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const run_local = process.env.run_local==='true';
+// const run_local = process.env.run_local==='true';
 export const config = {
   //
   // ====================
@@ -60,9 +60,9 @@ export const config = {
       // capabilities for local Appium web tests on an Android Emulator
       platformName: "Android",
       browserName: "Chrome",
-      "appium:deviceName": `${run_local? "Infinix HOT 8":undefined},`,
-      "appium:platformVersion": `${run_local? "9":undefined}`,
-      "appium:automationName": `${run_local?"UiAutomator2": undefined}`,
+      "appium:deviceName": ` "Infinix HOT 8"`,
+      "appium:platformVersion": `9`,
+      "appium:automationName": "UiAutomator2",
       "appium:chromedriverExecutable": path.join(
         __dirname,
         "test/specs/Resources/chromedriver"
