@@ -11,10 +11,5 @@ export default new (class TestBase {
   async waitForElementVisibility(elem, time) {
     await elem.waitForDisplayed({ timeout: time });
   }
-  async scroll() {
-    await $(
-      "android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,5)"
-    ); // the numbers can be replaced with texts
-  }
 })();
 
