@@ -59,7 +59,6 @@ export const config = {
     {
       // capabilities for local Appium web tests on an Android Emulator
       // platformName: "Android",
-      browserName: "Chrome",
       // "appium:deviceName": ` "Infinix HOT 8"`,
       // "appium:platformVersion": `9`,
       // "appium:automationName": "UiAutomator2",
@@ -67,8 +66,20 @@ export const config = {
       //   __dirname,
       //   "test/specs/Resources/chromedriver"
       // ),
+
+      maxInstances: 1,
+      browserName: 'chrome',
+      'goog:chromeOptions': {
+        args: [
+          '--headless',
+          '--disable-gpu',
+          '--no-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-software-rasterizer'
+        ],
      
-    },
+      }
+    }
   ],
 
   //
