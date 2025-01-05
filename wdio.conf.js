@@ -63,10 +63,10 @@ export const config = {
       // "appium:deviceName": ` "Infinix HOT 8"`,
       // "appium:platformVersion": `9`,
       // "appium:automationName": "UiAutomator2",
-      "appium:chromedriverExecutable": path.join(
-        __dirname,
-        "test/specs/Resources/chromedriver"
-      ),
+      // "appium:chromedriverExecutable": path.join(
+      //   __dirname,
+      //   "test/specs/Resources/chromedriver"
+      // ),
      
     },
   ],
