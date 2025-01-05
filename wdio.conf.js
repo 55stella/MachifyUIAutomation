@@ -60,9 +60,9 @@ export const config = {
       // capabilities for local Appium web tests on an Android Emulator
       platformName: "Android",
       browserName: "Chrome",
-      "appium:deviceName": `${run_local? "Infinix HOT 8":""},`,
-      "appium:platformVersion": `${run_local? "9":""}`,
-      "appium:automationName": `${run_local?"UiAutomator2": ""}`,
+      "appium:deviceName": `${run_local? "Infinix HOT 8":undefined},`,
+      "appium:platformVersion": `${run_local? "9":undefined}`,
+      "appium:automationName": `${run_local?"UiAutomator2": undefined}`,
       "appium:chromedriverExecutable": path.join(
         __dirname,
         "test/specs/Resources/chromedriver"
