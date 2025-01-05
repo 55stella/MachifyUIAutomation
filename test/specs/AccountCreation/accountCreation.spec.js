@@ -15,33 +15,38 @@ describe('Account Creation', () => {
         await testBase.waitForElementVisibility(signUpPage.signUpText, 400);
         await testBase.validateText(signUpPage.signUpText, "Sign Up");
     })
-    it("verify that the user can upload image successfully", async () => {
-      await signUpPage.sendProfilePicture(
-        `${path.join(__dirname, "test/specs/Resources/profilepicture.jpg")}`
-      );
-    });
+    it('verify that the user cannot proceed without filling mandatory fields', async() => {
+      await signUpPage.clickSubmitBtn()
+      await testBase.validateText(signUpPage.emptyFieldErrorMessage, "required.")
+    })
     it('verify that the user can fill in the mandatory fields successfully', async () => {
         const userDetails = profileCreationTestData.userDetails
         await signUpPage.fillCompulsoryInfo(userDetails.name,userDetails.age,
         userDetails.location,userDetails.Interests, userDetails.username, userDetails.password)
     })
-    it('verify that the user can submit form and successMessage is displayed', async () => {
+  it("verify that profile image is not a mandatory field ", async () => {
+      await signUpPage.clickSubmitBtn()
+      await testBase.validateText(signUpPage.successfulSignupMessage, successMessage)
+      
+    });
+  it('Verify that the user cannot proceed with Invalid picture format',async() => {
+      await signUpPage.sendProfilePicture(
+        `${path.join(__dirname, "test/specs/Resources/InvalidImageFormat.csv")}`
+      );
+      await signUpPage.clickSubmitBtn();
+      await testBase.validateText(signUpPage.invalidImageUploadErrorMessage, "Invalid file type. Use JPEG or PNG")
+      
+    })
+  it("verify that the user can Profile Picture successfully", async () => {
+      await signUpPage.sendProfilePicture(
+        `${path.join(__dirname, "test/specs/Resources/profilepicture.jpg")}`
+      );
+    });
+    it('verify that the user can submit profile creation form and successMessage is displayed', async () => {
         await testBase.waitForElementVisibility(signUpPage.submitBtn, 3000)
         await signUpPage.clickSubmitBtn()
         await testBase.validateText(signUpPage.successfulSignupMessage, successMessage)
     })
-    it("verify that profile image is not a mandatory field ", async () => {
-        
-    });
-    it('Verify that the user cannot proceed with Invalid picture format',async() => {
-        
-    })
-    it('verify that the user cannot proceed without filling mandatory fields', () => {
-        
-    })
-    it('verify that the age must be a digit and error message is displayed otherwise',() => {
-        
-    })
     
-
+    
 })

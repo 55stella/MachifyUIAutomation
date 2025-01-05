@@ -1,5 +1,4 @@
 import Page from "./page.js";
-
 export default new class SignUpPage extends Page{
 
     get name() {
@@ -38,9 +37,15 @@ export default new class SignUpPage extends Page{
     get successfulSignupMessage() {
         return $("//p[@class='text-green-600']");
     }
+    get emptyFieldErrorMessage() {
+        return $("//p[normalize-space()='Age is required.']");
+    }
+    get invalidImageUploadErrorMessage() {
+        return $("//p[@class='text-red-500 text-sm']");
+    }
     // methods
 
-     async fillCompulsoryInfo(name, age,location, interest,username, password) {
+     async fillCompulsoryInfo(name, age,location, interest,username, password,) {
          await this.sendValue(this.name, name)
          await this.sendValue(this.age, age)
          await this.click(this.femaleCheckBox);
@@ -53,11 +58,18 @@ export default new class SignUpPage extends Page{
     async sendProfilePicture(filepath) {
         await this.sendValue(this.profilePictureInput, filepath)
     }
+
     async clickSubmitBtn() {
-        await this.doubleClick(this.submitBtn)
+        await this.click(this.submitBtn)
+        await this.click(this.submitBtn)
     }
-
-
+    
+    async sendSomeProfileInformation(name,location) {
+        await this.sendValue(this.name, name);
+        await this.sendValue(this.age, age);
+        await this.click(this.femaleCheckBox);
+        await this.sendValue(this.location, location);
+    }
 
 }
 

@@ -21,4 +21,7 @@ export default class Page {
     async doubleClick(webElement) {
         await webElement.doubleClick()
     }
+    async clearValue(webElement) {
+        await webElement.clearValue()
+    }
 }
