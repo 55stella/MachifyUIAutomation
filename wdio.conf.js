@@ -12,7 +12,7 @@ export const config = {
   // ====================
   // WebdriverIO supports running e2e tests as well as unit and component tests.
   runner: "local",
-  port: 4723,
+  // port: 4723,
   //
   // ==================
   // Specify Test Files
@@ -58,15 +58,16 @@ export const config = {
   capabilities: [
     {
       // capabilities for local Appium web tests on an Android Emulator
-      platformName: "Android",
+      // platformName: "Android",
       browserName: "Chrome",
-      "appium:deviceName": ` "Infinix HOT 8"`,
-      "appium:platformVersion": `9`,
-      "appium:automationName": "UiAutomator2",
+      // "appium:deviceName": ` "Infinix HOT 8"`,
+      // "appium:platformVersion": `9`,
+      // "appium:automationName": "UiAutomator2",
       "appium:chromedriverExecutable": path.join(
         __dirname,
         "test/specs/Resources/chromedriver"
       ),
+     
     },
   ],
 
@@ -144,7 +145,7 @@ export const config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  
+
   reporters: [
     "spec",
     [
