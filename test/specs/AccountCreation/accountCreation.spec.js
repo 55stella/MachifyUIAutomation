@@ -3,9 +3,7 @@ import signUpPage from "../../pageobjects/signup.page.js"
 import testBase from "../testbase.js";
 import { profileCreationTestData } from "../utils/testdata.js";
 import path from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const rootPath = process.cwd();
 describe('Account Creation', () => {
     const url = "https://machifywebsite.netlify.app/";
     const successMessage = "Sign-Up Successful! Please log in.";
@@ -31,15 +29,14 @@ describe('Account Creation', () => {
     });
   it('Verify that the user cannot proceed with Invalid picture format',async() => {
       await signUpPage.sendProfilePicture(
-        `${path.join(__dirname, "test/specs/Resources/InvalidImageFormat.csv")}`
+        `${path.join(rootPath, "test/specs/Resources/InvalidImageFormat.csv")}`
       );
       await signUpPage.clickSubmitBtn();
-      await testBase.validateText(signUpPage.invalidImageUploadErrorMessage, "Invalid file type. Use JPEG or PNG")
-      
+      await testBase.validateText(signUpPage.invalidImageUploadErrorMessage, "Invalid file type. Use JPEG or PNG")  
     })
   it("verify that the user can Profile Picture successfully", async () => {
       await signUpPage.sendProfilePicture(
-        `${path.join(__dirname, "test/specs/Resources/profilepicture.jpg")}`
+        `${path.join(rootPath, "test/specs/Resources/profilepicture.jpg")}`
       );
     });
     it('verify that the user can submit profile creation form and successMessage is displayed', async () => {
