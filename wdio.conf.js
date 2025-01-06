@@ -1,10 +1,9 @@
-import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-// const run_local = process.env.run_local==='true';
+import path from "path";
+const rootPath = process.cwd();
+import deviceCabs from "./test/devicecabs.js";
+const isLocal = process.env.RUN_LOCAL==='true';
 export const config = {
   //
   // ====================
@@ -13,6 +12,7 @@ export const config = {
   // WebdriverIO supports running e2e tests as well as unit and component tests.
   runner: "local",
   // port: 4723,
+
   //
   // ==================
   // Specify Test Files
@@ -29,6 +29,7 @@ export const config = {
   // of the config file unless it's absolute.
   //
   specs: ["test/specs/AccountCreation/accountCreation.spec.js"],
+
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -56,30 +57,7 @@ export const config = {
   // https://saucelabs.com/platform/platform-configurator
   //
   capabilities: [
-    {
-      // capabilities for local Appium web tests on an Android Emulator
-      // platformName: "Android",
-      // "appium:deviceName": ` "Infinix HOT 8"`,
-      // "appium:platformVersion": `9`,
-      // "appium:automationName": "UiAutomator2",
-      // "appium:chromedriverExecutable": path.join(
-      //   __dirname,
-      //   "test/specs/Resources/chromedriver"
-      // ),
-
-      maxInstances: 1,
-      browserName: 'chrome',
-      'goog:chromeOptions': {
-        args: [
-          '--headless',
-          '--disable-gpu',
-          '--no-sandbox',
-          '--disable-dev-shm-usage',
-          '--disable-software-rasterizer'
-        ],
-     
-      }
-    }
+    isLocal? deviceCabs.localCabs(): deviceCabs.ciCabs()
   ],
 
   //
@@ -129,7 +107,7 @@ export const config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ["appium"],
+  // services: ["appium"],
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber

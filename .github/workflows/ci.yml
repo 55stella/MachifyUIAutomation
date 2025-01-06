@@ -14,7 +14,7 @@ jobs:
     env:
       USERNAME: 'stella1'
       PASSWORD: 'Password1@'
-      RUN_LOCAL: 'true'
+      RUN_LOCAL: 'false'
     steps:
       # Step 1: Checkout the repository
       - name: Checkout code

@@ -16,6 +16,7 @@
     "report": "allure generate --clean allure-results"
   },
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "webdriverio": "^9.5.1"
   }
 }
