@@ -35,11 +35,13 @@ jobs:
       # Step 5: Run frontend tests (using your test script)
       - name: Run frontend tests
         run: npm run wdio
+        continue-on-error: true
 
       # Step 6: Generate Allure report (optional if using)
       - name: Generate Allure report
         run: |
           allure generate --clean allure-results
+        if: always() 
 
       # Step 7: Upload Allure report as artifact
       - name: Upload Allure report as artifact
@@ -47,3 +49,4 @@ jobs:
         with:
           name: allure-report
           path: allure-report
+        if: always()

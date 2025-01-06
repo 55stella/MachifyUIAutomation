@@ -34,7 +34,7 @@ describe('Account Creation', () => {
       await signUpPage.clickSubmitBtn();
       await testBase.validateText(signUpPage.invalidImageUploadErrorMessage, "Invalid file type. Use JPEG or PNG")  
     })
-  it("verify that the user can Profile Picture successfully", async () => {
+  it("verify that the user can  submit Profile Picture successfully", async () => {
       await signUpPage.sendProfilePicture(
         `${path.join(rootPath, "test/specs/Resources/profilepicture.jpg")}`
       );
