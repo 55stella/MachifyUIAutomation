@@ -1,7 +1,5 @@
 import dotenv from "dotenv";
 dotenv.config();
-import path from "path";
-const rootPath = process.cwd();
 import deviceCabs from "./test/devicecabs.js";
 const isLocal = process.env.RUN_LOCAL==='true';
 export const config = {
