@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
-const username = process.env.username;
-const password = process.env.password;
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
 export const profileCreationTestData = {
   userDetails: {
     name: "Stella Agbadu",

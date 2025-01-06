@@ -11,7 +11,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      USERNAME: 'stella1'
+      PASSWORD: 'Password1@'
+      RUN_LOCAL: 'true'
     steps:
       # Step 1: Checkout the repository
       - name: Checkout code
