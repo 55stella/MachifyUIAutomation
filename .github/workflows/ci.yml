@@ -43,7 +43,7 @@ jobs:
       # Step 6: Generate Allure report (optional if using)
       - name: Generate Allure report
         run: |
-          allure generate --clean allure-results
+          allure generate --single-file allure-results
         if: always() 
 
       # Step 7: Upload Allure report as artifact

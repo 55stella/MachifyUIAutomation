@@ -1,8 +1,25 @@
 import dotenv from "dotenv";
 dotenv.config();
 import deviceCabs from "./test/devicecabs.js";
-const isLocal = process.env.RUN_LOCAL==='true';
+const isLocal = process.env.RUN_LOCAL === 'true';
+import * as Sentry from "@sentry/node";
+const dsn = process.env.DSN
 export const config = {
+
+  before: function () {
+    Sentry.init({
+      dsn: dsn,
+      tracesSampleRate: 1.0,
+    });
+  },
+  afterTest: function (test, context, result) {
+    if (result.error) {
+      // Capture the test error in Sentry
+      Sentry.captureException(result.error, {
+        tags: { testName: test.title, timestamp: new Date().toISOString() },
+      });
+    }
+  },
   //
   // ====================
   // Runner Configuration
@@ -54,9 +71,7 @@ export const config = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://saucelabs.com/platform/platform-configurator
   //
-  capabilities: [
-    isLocal? deviceCabs.localCabs(): deviceCabs.ciCabs()
-  ],
+  capabilities: [isLocal ? deviceCabs.localCabs() : deviceCabs.ciCabs()],
 
   //
   // ===================

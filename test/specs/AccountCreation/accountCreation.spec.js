@@ -2,8 +2,11 @@ import login from "../../pageobjects/login.page.js"
 import signUpPage from "../../pageobjects/signup.page.js"
 import testBase from "../testbase.js";
 import { profileCreationTestData } from "../utils/testdata.js";
+import dotenv from "dotenv";
+dotenv.config();
 import path from "path";
 const rootPath = process.cwd();
+
 describe('Account Creation', () => {
     const url = "https://machifywebsite.netlify.app/";
     const successMessage = "Sign-Up Successful! Please log in.";

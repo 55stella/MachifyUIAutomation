@@ -16,6 +16,8 @@
     "report": "allure generate --clean allure-results"
   },
   "dependencies": {
+    "@sentry/node": "^8.47.0",
+    "@sentry/profiling-node": "^8.47.0",
     "dotenv": "^16.4.7",
     "webdriverio": "^9.5.1"
   }
