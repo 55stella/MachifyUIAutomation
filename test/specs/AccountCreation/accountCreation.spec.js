@@ -8,7 +8,7 @@ import path from "path";
 const rootPath = process.cwd();
 
 describe('Account Creation', () => {
-    const url = "https://machifywebsite.netlify.app/";
+   const url = "https://machifywebsite.netlify.app/";
     const successMessage = "Sign-Up Successful! Please log in.";
     it('verify that the user can navigate to the signup screen successfully' , async() => {
         await login.open(url)
@@ -20,7 +20,7 @@ describe('Account Creation', () => {
       await signUpPage.clickSubmitBtn()
       await testBase.validateText(signUpPage.emptyFieldErrorMessage, "required.")
     })
-    it('verify that the user can fill in the mandatory fields successfully', async () => {
+    it('verify that the user can fill in all the mandatory fields successfully', async () => {
         const userDetails = profileCreationTestData.userDetails
         await signUpPage.fillCompulsoryInfo(userDetails.name,userDetails.age,
         userDetails.location,userDetails.Interests, userDetails.username, userDetails.password)
